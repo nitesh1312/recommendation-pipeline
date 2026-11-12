@@ -1,0 +1,18 @@
+{
+  "run_id": "PopularityBaseline_Run_1794512291",
+  "run_name": "PopularityBaseline_Run",
+  "start_time": "2026-11-12T19:38:11.527490",
+  "status": "COMPLETED",
+  "tags": {
+    "model_family": "heuristic_baseline"
+  },
+  "parameters": {
+    "model_type": "PopularityRecommender",
+    "m": 10.0
+  },
+  "metrics": {},
+  "artifacts": [
+    "models\\popularity_model.pkl"
+  ],
+  "end_time": "2026-11-12T19:38:11.712422"
+}

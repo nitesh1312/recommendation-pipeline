@@ -1,0 +1,44 @@
+{
+  "Baseline Popularity": {
+    "RMSE": 1.1111,
+    "MAE": 0.9226,
+    "Precision@5": 0.0069,
+    "Recall@5": 0.0094,
+    "NDCG@5": 0.0087,
+    "Catalog_Coverage@5": 2.67,
+    "Intra_List_Diversity@5": 0.9452,
+    "Precision@10": 0.0074,
+    "Recall@10": 0.0189,
+    "NDCG@10": 0.0132,
+    "Catalog_Coverage@10": 4.67,
+    "Intra_List_Diversity@10": 0.9193
+  },
+  "SVD Collaborative Filtering": {
+    "RMSE": 1.1412,
+    "MAE": 0.9302,
+    "Precision@5": 0.0138,
+    "Recall@5": 0.0185,
+    "NDCG@5": 0.018,
+    "Catalog_Coverage@5": 49.0,
+    "Intra_List_Diversity@5": 0.9209,
+    "Precision@10": 0.015,
+    "Recall@10": 0.0381,
+    "NDCG@10": 0.0266,
+    "Catalog_Coverage@10": 62.33,
+    "Intra_List_Diversity@10": 0.9239
+  },
+  "Hybrid Recommender": {
+    "RMSE": 1.1278,
+    "MAE": 0.9235,
+    "Precision@5": 0.0126,
+    "Recall@5": 0.0178,
+    "NDCG@5": 0.0153,
+    "Catalog_Coverage@5": 38.33,
+    "Intra_List_Diversity@5": 0.9257,
+    "Precision@10": 0.0112,
+    "Recall@10": 0.0301,
+    "NDCG@10": 0.0206,
+    "Catalog_Coverage@10": 48.67,
+    "Intra_List_Diversity@10": 0.9301
+  }
+}

@@ -1,0 +1,241 @@
+{
+  "pipeline_name": "Recommendation-System-Pipeline",
+  "version": "1.0.0",
+  "execution_start": "2026-11-12T19:38:07.302390",
+  "status": "SUCCESS",
+  "stages": {
+    "data_ingestion": {
+      "status": "SUCCESS",
+      "duration_seconds": 0.62,
+      "output": {
+        "status": "SUCCESS",
+        "users_path": "data\\raw\\users.csv",
+        "items_path": "data\\raw\\items.csv",
+        "interactions_path": "data\\raw\\interactions.csv"
+      }
+    },
+    "data_validation": {
+      "status": "SUCCESS",
+      "duration_seconds": 0.306,
+      "output": {
+        "validation_timestamp": "2026-11-12T19:38:07.935215",
+        "overall_status": "WARNINGS_FOUND",
+        "summary": {
+          "users": {
+            "raw_count": 1000,
+            "clean_count": 1000,
+            "quarantined_error_count": 0,
+            "pass_rate_pct": 100.0
+          },
+          "items": {
+            "raw_count": 300,
+            "clean_count": 300,
+            "quarantined_error_count": 0,
+            "pass_rate_pct": 100.0
+          },
+          "interactions": {
+            "raw_count": 35175,
+            "clean_count": 34259,
+            "quarantined_error_count": 1049,
+            "pass_rate_pct": 97.4
+          }
+        },
+        "detailed_checks": [
+          {
+            "check_name": "null_check",
+            "entity": "users",
+            "status": "PASSED",
+            "details": {
+              "null_records_count": 0
+            }
+          },
+          {
+            "check_name": "duplicate_check",
+            "entity": "users",
+            "status": "PASSED",
+            "details": {
+              "duplicates_count": 0
+            }
+          },
+          {
+            "check_name": "age_range_check",
+            "entity": "users",
+            "status": "PASSED",
+            "details": {
+              "invalid_age_count": 0
+            }
+          },
+          {
+            "check_name": "null_check",
+            "entity": "items",
+            "status": "PASSED",
+            "details": {
+              "null_records_count": 0
+            }
+          },
+          {
+            "check_name": "duplicate_check",
+            "entity": "items",
+            "status": "PASSED",
+            "details": {
+              "duplicates_count": 0
+            }
+          },
+          {
+            "check_name": "year_bounds_check",
+            "entity": "items",
+            "status": "PASSED",
+            "details": {
+              "invalid_year_count": 0
+            }
+          },
+          {
+            "check_name": "null_check",
+            "entity": "interactions",
+            "status": "FAILED",
+            "details": {
+              "null_count": 131
+            }
+          },
+          {
+            "check_name": "rating_range_check",
+            "entity": "interactions",
+            "status": "FAILED",
+            "details": {
+              "invalid_rating_count": 262,
+              "allowed_range": [
+                1.0,
+                5.0
+              ]
+            }
+          },
+          {
+            "check_name": "timestamp_validity",
+            "entity": "interactions",
+            "status": "FAILED",
+            "details": {
+              "invalid_timestamp_count": 131
+            }
+          },
+          {
+            "check_name": "duplicate_interaction_check",
+            "entity": "interactions",
+            "status": "FAILED",
+            "details": {
+              "duplicates_count": 175
+            }
+          },
+          {
+            "check_name": "referential_integrity_users",
+            "entity": "interactions",
+            "status": "FAILED",
+            "details": {
+              "dangling_user_records": 176
+            }
+          },
+          {
+            "check_name": "referential_integrity_items",
+            "entity": "interactions",
+            "status": "FAILED",
+            "details": {
+              "dangling_item_records": 176
+            }
+          }
+        ]
+      }
+    },
+    "data_preparation": {
+      "status": "SUCCESS",
+      "duration_seconds": 1.146,
+      "output": {
+        "status": "SUCCESS",
+        "num_users": 1000,
+        "num_items": 300,
+        "train_interactions": 27407,
+        "test_interactions": 6852
+      }
+    },
+    "data_transformation": {
+      "status": "SUCCESS",
+      "duration_seconds": 1.167,
+      "output": {
+        "status": "SUCCESS",
+        "users_transformed": 1000,
+        "items_transformed": 300,
+        "users_indexed": 1000,
+        "items_indexed": 300
+      }
+    },
+    "feature_engineering": {
+      "status": "SUCCESS",
+      "duration_seconds": 0.945,
+      "output": {
+        "status": "SUCCESS",
+        "user_features_count": 1000,
+        "item_features_count": 300,
+        "train_interaction_features_count": 27407,
+        "test_interaction_features_count": 6852
+      }
+    },
+    "model_training": {
+      "status": "SUCCESS",
+      "duration_seconds": 19.943,
+      "output": {
+        "status": "SUCCESS",
+        "popularity_model": "models\\popularity_model.pkl",
+        "svd_cf_model": "models\\svd_cf_model.pkl",
+        "hybrid_model": "models\\hybrid_model.pkl"
+      }
+    },
+    "model_evaluation": {
+      "status": "SUCCESS",
+      "duration_seconds": 20.33,
+      "output": {
+        "Baseline Popularity": {
+          "RMSE": 1.1111,
+          "MAE": 0.9226,
+          "Precision@5": 0.0069,
+          "Recall@5": 0.0094,
+          "NDCG@5": 0.0087,
+          "Catalog_Coverage@5": 2.67,
+          "Intra_List_Diversity@5": 0.9452,
+          "Precision@10": 0.0074,
+          "Recall@10": 0.0189,
+          "NDCG@10": 0.0132,
+          "Catalog_Coverage@10": 4.67,
+          "Intra_List_Diversity@10": 0.9193
+        },
+        "SVD Collaborative Filtering": {
+          "RMSE": 1.1412,
+          "MAE": 0.9302,
+          "Precision@5": 0.0138,
+          "Recall@5": 0.0185,
+          "NDCG@5": 0.018,
+          "Catalog_Coverage@5": 49.0,
+          "Intra_List_Diversity@5": 0.9209,
+          "Precision@10": 0.015,
+          "Recall@10": 0.0381,
+          "NDCG@10": 0.0266,
+          "Catalog_Coverage@10": 62.33,
+          "Intra_List_Diversity@10": 0.9239
+        },
+        "Hybrid Recommender": {
+          "RMSE": 1.1278,
+          "MAE": 0.9235,
+          "Precision@5": 0.0126,
+          "Recall@5": 0.0178,
+          "NDCG@5": 0.0153,
+          "Catalog_Coverage@5": 38.33,
+          "Intra_List_Diversity@5": 0.9257,
+          "Precision@10": 0.0112,
+          "Recall@10": 0.0301,
+          "NDCG@10": 0.0206,
+          "Catalog_Coverage@10": 48.67,
+          "Intra_List_Diversity@10": 0.9301
+        }
+      }
+    }
+  },
+  "execution_end": "2026-11-12T19:38:51.762735",
+  "total_duration_seconds": 44.459
+}

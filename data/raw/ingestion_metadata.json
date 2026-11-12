@@ -1,0 +1,12 @@
+{
+  "ingestion_timestamp": "2026-11-12T19:38:07.919833",
+  "num_users_raw": 1000,
+  "num_items_raw": 300,
+  "num_interactions_raw": 35175,
+  "anomalies_injected": true,
+  "files": {
+    "users": "data\\raw\\users.csv",
+    "items": "data\\raw\\items.csv",
+    "interactions": "data\\raw\\interactions.csv"
+  }
+}

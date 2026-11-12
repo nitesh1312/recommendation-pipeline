@@ -1,0 +1,89 @@
+# ==============================================================================
+# End-to-End Recommendation Pipeline Configuration
+# ==============================================================================
+
+pipeline:
+  name: "Recommendation-System-Pipeline"
+  version: "1.0.0"
+  random_seed: 42
+  environment: "development"
+
+paths:
+  raw_data_dir: "data/raw"
+  processed_data_dir: "data/processed"
+  features_data_dir: "data/features"
+  errors_data_dir: "data/errors"
+  models_dir: "models"
+  reports_dir: "reports"
+  tracking_dir: "reports/mlflow_runs"
+
+ingestion:
+  source_type: "synthetic_movielens"  # Options: synthetic_movielens, csv, api
+  num_users: 1000
+  num_items: 300
+  num_interactions: 35000
+  include_anomalies: true            # Injects dirty records to test data validation engine
+  anomaly_rate: 0.03
+  start_date: "2023-01-01"
+  end_date: "2024-06-30"
+
+validation:
+  rating_min: 1.0
+  rating_max: 5.0
+  enforce_referential_integrity: true
+  drop_invalid_records: true
+  error_output_format: "csv"
+
+preparation:
+  test_size: 0.20                    # 20% test data
+  split_strategy: "time_based"       # Chronological split to avoid lookahead bias
+  min_user_interactions: 3          # Filter cold users with fewer interactions
+  min_item_interactions: 2          # Filter extremely sparse items
+
+features:
+  user_features:
+    - "user_avg_rating"
+    - "user_rating_count"
+    - "user_rating_std"
+    - "user_preferred_genre"
+    - "user_activity_ratio"
+    - "user_days_since_first_interaction"
+  item_features:
+    - "item_popularity_count"
+    - "item_avg_rating"
+    - "item_rating_std"
+    - "item_recency_years"
+    - "item_genre_vector"
+  interaction_features:
+    - "days_since_user_last_interaction"
+    - "interaction_hour"
+    - "interaction_weekday"
+    - "user_item_category_affinity"
+
+training:
+  models:
+    - name: "PopularityBaseline"
+      type: "baseline"
+      bayesian_shrinkage_m: 10
+    - name: "SVDCollaborativeFiltering"
+      type: "matrix_factorization"
+      n_factors: 32
+      n_epochs: 25
+      lr: 0.007
+      reg: 0.05
+    - name: "HybridRecommender"
+      type: "hybrid"
+      cf_weight: 0.75
+      popularity_weight: 0.25
+
+evaluation:
+  top_k_list: [5, 10]
+  relevance_threshold: 3.5           # Ratings >= 3.5 considered relevant items for Precision/Recall/NDCG
+  metrics:
+    - "RMSE"
+    - "MAE"
+    - "Precision@K"
+    - "Recall@K"
+    - "NDCG@K"
+    - "Catalog_Coverage"
+    - "Intra_List_Diversity"

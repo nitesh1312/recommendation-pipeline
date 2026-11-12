@@ -1,0 +1,15 @@
+feature_name,entity,data_type,source,update_frequency,description
+user_avg_rating,User,Float,Train Interactions Aggregation,Batch / Daily,Historical average rating given by the user across all rated items.
+user_rating_count,User,Integer,Train Interactions Aggregation,Batch / Daily,Total number of items rated/interacted with by the user.
+user_rating_std,User,Float,Train Interactions Aggregation,Batch / Daily,Standard deviation of user ratings indicating rating variance.
+user_preferred_genre,User,Categorical,Interactions x Item Catalog,Batch / Weekly,Dominant movie genre the user interacts with most frequently.
+user_activity_ratio,User,Float,Interactions Aggregation,Batch / Daily,Interaction count per day of platform tenure.
+user_days_since_first_interaction,User,Float,Interactions Timestamp,Batch / Daily,Days since the user's initial interaction on the platform.
+item_popularity_count,Item,Integer,Train Interactions Aggregation,Batch / Hourly,Total interaction volume received by the item.
+item_avg_rating,Item,Float,Train Interactions Aggregation,Batch / Hourly,Mean rating received by the item across all consumers.
+item_rating_std,Item,Float,Train Interactions Aggregation,Batch / Hourly,Standard deviation of ratings reflecting review consensus.
+item_recency_years,Item,Integer,Item Catalog Metadata,Static / Monthly,Age of the item relative to current year.
+genre_* (18 vectors),Item,Binary Vector,Item Catalog Genres,Static,Multi-hot binary indicator vectors for 18 distinct genres.
+interaction_hour,Interaction,Integer (0-23),Interaction Timestamp,Real-time / Point-in-time,Hour of the day when interaction event transpired.
+interaction_weekday,Interaction,Integer (0-6),Interaction Timestamp,Real-time / Point-in-time,Day of the week of the interaction event.
+user_item_category_affinity,Interaction,Binary / Float,User-Item Cross Feature,Point-in-time,Indicator of whether the target item matches the user's primary preferred genre.

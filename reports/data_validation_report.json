@@ -1,0 +1,126 @@
+{
+  "validation_timestamp": "2026-11-12T19:38:07.935215",
+  "overall_status": "WARNINGS_FOUND",
+  "summary": {
+    "users": {
+      "raw_count": 1000,
+      "clean_count": 1000,
+      "quarantined_error_count": 0,
+      "pass_rate_pct": 100.0
+    },
+    "items": {
+      "raw_count": 300,
+      "clean_count": 300,
+      "quarantined_error_count": 0,
+      "pass_rate_pct": 100.0
+    },
+    "interactions": {
+      "raw_count": 35175,
+      "clean_count": 34259,
+      "quarantined_error_count": 1049,
+      "pass_rate_pct": 97.4
+    }
+  },
+  "detailed_checks": [
+    {
+      "check_name": "null_check",
+      "entity": "users",
+      "status": "PASSED",
+      "details": {
+        "null_records_count": 0
+      }
+    },
+    {
+      "check_name": "duplicate_check",
+      "entity": "users",
+      "status": "PASSED",
+      "details": {
+        "duplicates_count": 0
+      }
+    },
+    {
+      "check_name": "age_range_check",
+      "entity": "users",
+      "status": "PASSED",
+      "details": {
+        "invalid_age_count": 0
+      }
+    },
+    {
+      "check_name": "null_check",
+      "entity": "items",
+      "status": "PASSED",
+      "details": {
+        "null_records_count": 0
+      }
+    },
+    {
+      "check_name": "duplicate_check",
+      "entity": "items",
+      "status": "PASSED",
+      "details": {
+        "duplicates_count": 0
+      }
+    },
+    {
+      "check_name": "year_bounds_check",
+      "entity": "items",
+      "status": "PASSED",
+      "details": {
+        "invalid_year_count": 0
+      }
+    },
+    {
+      "check_name": "null_check",
+      "entity": "interactions",
+      "status": "FAILED",
+      "details": {
+        "null_count": 131
+      }
+    },
+    {
+      "check_name": "rating_range_check",
+      "entity": "interactions",
+      "status": "FAILED",
+      "details": {
+        "invalid_rating_count": 262,
+        "allowed_range": [
+          1.0,
+          5.0
+        ]
+      }
+    },
+    {
+      "check_name": "timestamp_validity",
+      "entity": "interactions",
+      "status": "FAILED",
+      "details": {
+        "invalid_timestamp_count": 131
+      }
+    },
+    {
+      "check_name": "duplicate_interaction_check",
+      "entity": "interactions",
+      "status": "FAILED",
+      "details": {
+        "duplicates_count": 175
+      }
+    },
+    {
+      "check_name": "referential_integrity_users",
+      "entity": "interactions",
+      "status": "FAILED",
+      "details": {
+        "dangling_user_records": 176
+      }
+    },
+    {
+      "check_name": "referential_integrity_items",
+      "entity": "interactions",
+      "status": "FAILED",
+      "details": {
+        "dangling_item_records": 176
+      }
+    }
+  ]
+}

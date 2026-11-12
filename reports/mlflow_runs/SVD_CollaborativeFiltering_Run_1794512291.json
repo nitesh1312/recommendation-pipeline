@@ -1,0 +1,21 @@
+{
+  "run_id": "SVD_CollaborativeFiltering_Run_1794512291",
+  "run_name": "SVD_CollaborativeFiltering_Run",
+  "start_time": "2026-11-12T19:38:11.714416",
+  "status": "COMPLETED",
+  "tags": {
+    "model_family": "matrix_factorization"
+  },
+  "parameters": {
+    "model_type": "SVDCollaborativeFiltering",
+    "n_factors": 32,
+    "n_epochs": 25,
+    "lr": 0.007,
+    "reg": 0.05
+  },
+  "metrics": {},
+  "artifacts": [
+    "models\\svd_cf_model.pkl"
+  ],
+  "end_time": "2026-11-12T19:38:31.409478"
+}

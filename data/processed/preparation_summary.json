@@ -1,0 +1,13 @@
+{
+  "total_clean_users": 1000,
+  "total_clean_items": 300,
+  "total_clean_interactions": 34259,
+  "train_interactions_count": 27407,
+  "test_interactions_count": 6852,
+  "split_strategy": "time_based",
+  "test_ratio": 0.2,
+  "train_time_min": "2023-01-01 00:08:29",
+  "train_time_max": "2024-03-12 16:36:56",
+  "test_time_min": "2024-03-12 16:47:46",
+  "test_time_max": "2024-06-29 23:50:28"
+}
