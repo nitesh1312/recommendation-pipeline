@@ -1,6 +1,0 @@
-__pycache__/
-*.pyc
-.bob/
-venv/
-.venv/
-pipeline_execution.log
